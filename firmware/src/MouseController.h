@@ -9,19 +9,19 @@ public:
     }
 
     void moveUp() {
-        Mouse.move(0, -20);
+        Mouse.move(0, -40);
     }
 
     void moveDown() {
-        Mouse.move(0, 20);
+        Mouse.move(0, 40);
     }
 
     void moveLeft() {
-        Mouse.move(-20, 0);
+        Mouse.move(-40, 0);
     }
 
     void moveRight() {
-        Mouse.move(20, 0);
+        Mouse.move(40, 0);
     }
 
     void click() {
