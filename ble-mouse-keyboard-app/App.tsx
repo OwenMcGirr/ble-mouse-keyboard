@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Alert, ActivityIn
 import { bleService } from './src/services/BleService';
 import { Device } from 'react-native-ble-plx';
 import { KeyboardMode } from './src/components/KeyboardMode';
+import { KeyboardControls } from './src/components/KeyboardControls';
+import { MouseControls } from './src/components/MouseControls';
 
 export default function App() {
   const [isScanning, setIsScanning] = useState(false);
@@ -97,77 +99,6 @@ export default function App() {
     }
   };
 
-  const renderMouseControls = () => (
-    <View style={styles.controlsContainer}>
-      <TouchableOpacity
-        style={[styles.button, styles.upButton]}
-        onPress={() => bleService.sendMouseUp()}
-        activeOpacity={0.7}
-      >
-        <Text style={styles.buttonIcon}>↑</Text>
-      </TouchableOpacity>
-      <View style={styles.horizontalButtons}>
-        <TouchableOpacity
-          style={[styles.button, styles.leftButton]}
-          onPress={() => bleService.sendMouseLeft()}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonIcon}>←</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.clickButton]}
-          onPress={() => bleService.sendMouseClick()}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonIcon}>👆</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.rightButton]}
-          onPress={() => bleService.sendMouseRight()}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonIcon}>→</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        style={[styles.button, styles.downButton]}
-        onPress={() => bleService.sendMouseDown()}
-        activeOpacity={0.7}
-      >
-        <Text style={styles.buttonIcon}>↓</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
-  const renderKeyboardControls = () => (
-    <View style={styles.controlsContainer}>
-      <TouchableOpacity
-        style={styles.keyboardButton}
-        onPress={() => bleService.sendSelectAll()}
-      >
-        <Text style={styles.buttonText}>Select All</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.keyboardButton}
-        onPress={() => bleService.sendCopy()}
-      >
-        <Text style={styles.buttonText}>Copy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.keyboardButton}
-        onPress={() => bleService.sendPaste()}
-      >
-        <Text style={styles.buttonText}>Paste</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.keyboardButton}
-        onPress={() => bleService.sendDelete()}
-      >
-        <Text style={styles.buttonText}>Delete</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
@@ -245,9 +176,9 @@ export default function App() {
             </TouchableOpacity>
 
             {isKeyboardMode ? (
-              <KeyboardMode />
+              <KeyboardControls />
             ) : (
-              renderMouseControls()
+              <MouseControls />
             )}
 
             <TouchableOpacity
@@ -496,6 +427,34 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginVertical: 5,
+    width: '100%',
+  },
+  movementControls: {
+    marginBottom: 20,
+  },
+  controlLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  keyboardSection: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  keyboardGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  biosLoopButton: {
+    backgroundColor: '#FF3B30',
     width: '100%',
   },
 });

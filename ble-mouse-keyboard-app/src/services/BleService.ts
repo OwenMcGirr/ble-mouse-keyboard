@@ -5,6 +5,7 @@ class BleService {
   private bleManager: BleManager;
   private device: Device | null = null;
   private isConnected: boolean = false;
+  private isKeyboardMode: boolean = false;
   private readonly DEVICE_NAME = 'MouseAndKeyboard';
   
   // Nordic UART Service UUIDs
@@ -187,45 +188,144 @@ class BleService {
   }
 
   // Mouse commands
-  async sendMouseUp(): Promise<void> {
-    await this.sendCommand('B516');
+  async sendMouseUpSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_20');
   }
 
-  async sendMouseDown(): Promise<void> {
-    await this.sendCommand('B615');
+  async sendMouseDownSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_20');
   }
 
-  async sendMouseLeft(): Promise<void> {
-    await this.sendCommand('B714');
+  async sendMouseLeftSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_LEFT_20');
   }
 
-  async sendMouseRight(): Promise<void> {
-    await this.sendCommand('B813');
+  async sendMouseRightSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_RIGHT_20');
   }
 
-  async sendMouseClick(): Promise<void> {
-    await this.sendCommand('B11');
+  async sendMouseUpLeftSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_LEFT_20');
+  }
+
+  async sendMouseUpRightSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_RIGHT_20');
+  }
+
+  async sendMouseDownLeftSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_LEFT_20');
+  }
+
+  async sendMouseDownRightSmall(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_RIGHT_20');
+  }
+
+  async sendMouseUpLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_80');
+  }
+
+  async sendMouseDownLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_80');
+  }
+
+  async sendMouseLeftLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_LEFT_80');
+  }
+
+  async sendMouseRightLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_RIGHT_80');
+  }
+
+  async sendMouseUpLeftLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_LEFT_80');
+  }
+
+  async sendMouseUpRightLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_UP_RIGHT_80');
+  }
+
+  async sendMouseDownLeftLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_LEFT_80');
+  }
+
+  async sendMouseDownRightLarge(): Promise<void> {
+    await this.sendCommand('MOUSE_DOWN_RIGHT_80');
+  }
+
+  async sendMouseLeftClick(): Promise<void> {
+    await this.sendCommand('MOUSE_LEFT_CLICK');
+  }
+
+  async sendMouseRightClick(): Promise<void> {
+    await this.sendCommand('MOUSE_RIGHT_CLICK');
+  }
+
+  // Mode switching
+  async sendModeSwitch(): Promise<void> {
+    this.isKeyboardMode = !this.isKeyboardMode;
+    await this.sendCommand(this.isKeyboardMode ? 'MODE_KEYBOARD' : 'MODE_MOUSE');
   }
 
   // Keyboard commands
-  async sendModeSwitch(): Promise<void> {
-    await this.sendCommand('MODE');
-  }
-
   async sendSelectAll(): Promise<void> {
-    await this.sendCommand('KSA');
+    await this.sendCommand('KEYBOARD_SELECT_ALL');
   }
 
   async sendCopy(): Promise<void> {
-    await this.sendCommand('KC');
+    await this.sendCommand('KEYBOARD_COPY');
   }
 
   async sendPaste(): Promise<void> {
-    await this.sendCommand('KP');
+    await this.sendCommand('KEYBOARD_PASTE');
   }
 
   async sendDelete(): Promise<void> {
-    await this.sendCommand('KD');
+    await this.sendCommand('KEYBOARD_DELETE');
+  }
+
+  // BIOS navigation commands
+  async sendBiosUp(): Promise<void> {
+    await this.sendCommand('BIOS_UP');
+  }
+
+  async sendBiosDown(): Promise<void> {
+    await this.sendCommand('BIOS_DOWN');
+  }
+
+  async sendBiosLeft(): Promise<void> {
+    await this.sendCommand('BIOS_LEFT');
+  }
+
+  async sendBiosRight(): Promise<void> {
+    await this.sendCommand('BIOS_RIGHT');
+  }
+
+  async sendBiosEnter(): Promise<void> {
+    await this.sendCommand('BIOS_ENTER');
+  }
+
+  async sendBiosEsc(): Promise<void> {
+    await this.sendCommand('BIOS_ESC');
+  }
+
+  async sendBiosF2(): Promise<void> {
+    await this.sendCommand('BIOS_F2');
+  }
+
+  async sendBiosF10(): Promise<void> {
+    await this.sendCommand('BIOS_F10');
+  }
+
+  async sendBiosF12(): Promise<void> {
+    await this.sendCommand('BIOS_F12');
+  }
+
+  async sendBiosDelete(): Promise<void> {
+    await this.sendCommand('BIOS_DELETE');
+  }
+
+  async sendBiosLoop(): Promise<void> {
+    await this.sendCommand('BIOS_LOOP');
   }
 
   async sendText(text: string): Promise<void> {

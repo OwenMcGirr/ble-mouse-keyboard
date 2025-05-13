@@ -1,14 +1,22 @@
 # BLE Mouse & Keyboard App
 
-A React Native Expo app that allows you to control your custom BLE mouse and keyboard device.
+A React Native Expo app that provides an intuitive interface for controlling your custom BLE mouse and keyboard device. Designed with accessibility in mind, this app offers precise control options and a modern, user-friendly interface.
 
 ## Features
 
 - Bluetooth Low Energy (BLE) device scanning and connection
-- Mouse controls (up, down, left, right, click)
-- Keyboard controls (select all, copy, paste, delete)
-- Mode switching between mouse and keyboard
-- Modern and intuitive user interface
+- Intuitive mouse controls with:
+  - 8-directional movement pad
+  - Variable movement speeds (small/large)
+  - Left and right click buttons
+  - Diagonal movement support
+- Keyboard controls with:
+  - Text entry field
+  - Common shortcuts (select all, copy, paste, delete)
+  - BIOS navigation keys
+- Easy mode switching between mouse and keyboard
+- Modern and accessible user interface
+- Real-time connection status and error handling
 
 ## Prerequisites
 
@@ -43,8 +51,20 @@ npx expo start
 3. Tap "Scan for Devices" to search for available BLE devices
 4. Select your device from the list to connect
 5. Use the on-screen controls to operate your device:
-   - Mouse Mode: Use the directional buttons and click button
-   - Keyboard Mode: Use the keyboard shortcut buttons
+
+   ### Mouse Mode
+   - Use the directional pad for mouse movement
+   - Toggle between small (20px) and large (80px) movements using the speed switch
+   - Use the left and right click buttons for mouse clicks
+   - Diagonal movements are supported for precise control
+
+   ### Keyboard Mode
+   - Use the text entry field to type text
+   - Use the basic controls for common shortcuts
+   - Use the navigation controls for arrow keys and enter
+   - Use the function keys for F2, F10, F12, etc.
+   - Use the BIOS loop button for BIOS access
+
 6. Tap the mode switch button to toggle between mouse and keyboard modes
 7. Tap "Disconnect" to end the connection
 
@@ -53,6 +73,8 @@ npx expo start
 ### Project Structure
 
 - `src/services/BleService.ts` - BLE connection and command handling
+- `src/components/MouseControls.tsx` - Mouse control interface
+- `src/components/KeyboardControls.tsx` - Keyboard control interface
 - `App.tsx` - Main application component and UI
 - `app.json` - Expo configuration and permissions
 
@@ -62,10 +84,10 @@ To create a production build:
 
 ```bash
 # For Android
-npx expo build:android
+npx eas build --platform android
 
 # For iOS
-npx expo build:ios
+npx eas build --platform ios
 ```
 
 ## Troubleshooting
@@ -84,6 +106,15 @@ npx expo build:ios
    - Verify that you're in the correct mode (mouse/keyboard)
    - Check that the connection is still active
    - Try reconnecting to the device
+
+4. If the app crashes:
+   - Check the device logs for error messages
+   - Ensure all permissions are granted
+   - Try clearing the app cache and data
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 

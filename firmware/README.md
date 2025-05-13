@@ -4,11 +4,13 @@ This project was created to help people with physical disabilities, particularly
 
 ## Features
 
-- Full mouse control (movement and clicks)
-- Keyboard input support
+- Full mouse control with variable movement speeds
+- Keyboard input support with common shortcuts
 - BIOS navigation capabilities
 - BLE connectivity for wireless control
 - Simple command interface
+- Support for diagonal mouse movements
+- Left and right mouse click support
 
 ## Hardware Requirements
 
@@ -19,37 +21,59 @@ This project was created to help people with physical disabilities, particularly
 ## Commands
 
 ### Mouse Controls
-- `B516` - Move mouse up
-- `B615` - Move mouse down
-- `B714` - Move mouse left
-- `B813` - Move mouse right
-- `B11` - Mouse click
+- Small Movements (20px):
+  - `MOUSE_UP_20` - Move mouse up
+  - `MOUSE_DOWN_20` - Move mouse down
+  - `MOUSE_LEFT_20` - Move mouse left
+  - `MOUSE_RIGHT_20` - Move mouse right
+  - `MOUSE_UP_LEFT_20` - Move mouse up-left
+  - `MOUSE_UP_RIGHT_20` - Move mouse up-right
+  - `MOUSE_DOWN_LEFT_20` - Move mouse down-left
+  - `MOUSE_DOWN_RIGHT_20` - Move mouse down-right
+
+- Large Movements (80px):
+  - `MOUSE_UP_80` - Move mouse up
+  - `MOUSE_DOWN_80` - Move mouse down
+  - `MOUSE_LEFT_80` - Move mouse left
+  - `MOUSE_RIGHT_80` - Move mouse right
+  - `MOUSE_UP_LEFT_80` - Move mouse up-left
+  - `MOUSE_UP_RIGHT_80` - Move mouse up-right
+  - `MOUSE_DOWN_LEFT_80` - Move mouse down-left
+  - `MOUSE_DOWN_RIGHT_80` - Move mouse down-right
+
+- Mouse Clicks:
+  - `MOUSE_LEFT_CLICK` - Left mouse click
+  - `MOUSE_RIGHT_CLICK` - Right mouse click
 
 ### Keyboard Controls
-- `KSA` - Select all (Windows key + A)
-- `KC` - Copy (Ctrl + C)
-- `KP` - Paste (Ctrl + V)
-- `KD` - Delete/Backspace
+- `KEYBOARD_SELECT_ALL` - Select all (Windows key + A)
+- `KEYBOARD_COPY` - Copy (Ctrl + C)
+- `KEYBOARD_PASTE` - Paste (Ctrl + V)
+- `KEYBOARD_DELETE` - Delete/Backspace
 
 ### BIOS Navigation
-- `KBU` - Up arrow
-- `KBD` - Down arrow
-- `KBL` - Left arrow
-- `KBR` - Right arrow
-- `KBE` - Enter
-- `KBX` - Escape
-- `KF2` - F2 key
-- `KF10` - F10 key
-- `KF12` - F12 key
-- `KBDEL` - Delete key
-- `KBL` - BIOS entry loop (repeatedly presses Delete)
+- `BIOS_UP` - Up arrow
+- `BIOS_DOWN` - Down arrow
+- `BIOS_LEFT` - Left arrow
+- `BIOS_RIGHT` - Right arrow
+- `BIOS_ENTER` - Enter
+- `BIOS_ESC` - Escape
+- `BIOS_F2` - F2 key
+- `BIOS_F10` - F10 key
+- `BIOS_F12` - F12 key
+- `BIOS_DELETE` - Delete key
+- `BIOS_LOOP` - BIOS entry loop (repeatedly presses Delete)
+
+### Mode Switching
+- `MODE_MOUSE` - Switch to mouse mode
+- `MODE_KEYBOARD` - Switch to keyboard mode
 
 ## Usage
 
 1. Connect the Arduino to your computer via USB
 2. Pair your BLE controller with the device
 3. Send commands using the format specified above
-4. For BIOS access, use the `KBL` command to enter the BIOS loop
+4. For BIOS access, use the `BIOS_LOOP` command to enter the BIOS loop
 
 ## Why This Project?
 
@@ -59,6 +83,8 @@ This project was specifically designed to help individuals with cerebral palsy w
 - Reduced physical strain
 - Alternative control schemes
 - Accessibility to computer functions that would otherwise be difficult to access
+- Variable movement speeds for precise control
+- Support for both mouse and keyboard operations
 
 ## Contributing
 
